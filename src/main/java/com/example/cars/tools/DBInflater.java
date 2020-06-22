@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DBInflater implements ApplicationListener<ContextRefreshedEvent> {
 
-    public DBInflater(ModelRepository modelsRepository, BrandRepository brandsRepository, EngineRepository enginesRepository) {
+    public DBInflater(ModelRepository modelRepository, BrandRepository brandRepository, EngineRepository engineRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
         this.engineRepository = engineRepository;
@@ -29,23 +29,26 @@ public class DBInflater implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void initData() {
-        Brand Audi = new Brand("Audi", "VW AG");
-        Engine cmm3197 = new Engine("3.2");
-        Model A5 = new Model("audi", "A5", "F5", "2016+", "VW AG");
-        Audi.getModels().add(A5);
-        A5.getBrands().add(Audi);
+        Brand audi = new Brand(1L, "first name", "concern");
+        Engine cmm3197 = new Engine(1L, "capacity", "kw", "km");
+        Model a5 = new Model(1L, "A5", "F5", "2016+", "VW AG");
+        //you can't define id as String
+        audi.getModels().add(a5);
+        a5.getBrands().add(audi);
         engineRepository.save(cmm3197);
-        brandRepository.save(Audi);
-        modelRepository.save(A5);
+        brandRepository.save(audi);
+        modelRepository.save(a5);
 
+        /**
         Brand BMW = new Brand("BMW", "Bayerische Motoren Werke");
         Engine cmm1998 = new Engine("2.0");
-        Model E3 = new Model("BMW", "E3", "G20", "2018+", "Bayerische Motoren Werke");
+        Model E3 = new Model(2, "E3", "G20", "2018+", "Bayerische Motoren Werke");
         BMW.getModels().add(E3);
         E3.getBrands().add(BMW);
         engineRepository.save(cmm1998);
         brandRepository.save(BMW);
         modelRepository.save(E3);
+         */
 
     }
 }

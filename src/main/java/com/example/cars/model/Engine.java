@@ -6,8 +6,16 @@ import javax.persistence.Id;
 import java.util.HashSet;
 import java.util.Set;
 
+@lombok.Data
+@javax.persistence.Entity
 public class Engine {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String capacity;
+    private String kW;
+    private String KM;
 
     public Long getId() {
         return id;
@@ -49,34 +57,17 @@ public class Engine {
         this.engines = engines;
     }
 
-    public Engine(Long id, String capacity, String kW, String KM, Set<Engine> engines) {
+    public Engine(Long id, String capacity, String kW, String KM) {
         this.id = id;
         this.capacity = capacity;
         this.kW = kW;
         this.KM = KM;
-        this.engines = engines;
+        //this.engines = engines;
     }
-
-    public Engine() {
-    }
-
-    @Override
-    public String toString() {
-        return "Engine{" +
-                "id=" + id +
-                ", capacity='" + capacity + '\'' +
-                ", kW='" + kW + '\'' +
-                ", KM='" + KM + '\'' +
-                ", engines=" + engines +
-                '}';
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String capacity;
-    private String kW;
-    private String KM;
 
     private Set<Engine> engines = new HashSet<>();
+
+
+
+
 }

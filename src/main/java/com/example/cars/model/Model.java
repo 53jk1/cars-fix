@@ -28,23 +28,6 @@ public class Model {
     @ManyToMany
     private Set<Brand> brands = new HashSet<>();
 
-    public Model(Long id, String model, String generation, String year, String concern, Set<Brand> brands) {
-        this.id = id;
-        this.model = model;
-        this.generation = generation;
-        this.year = year;
-        this.concern = concern;
-        this.brands = brands;
-    }
-
-    public Song(String title, String genre, String ismn, String year) {
-        this.model = model;
-        this.generation = generation;
-        this.year = year;
-        this.concern = concern;
-        this.brands = brands;
-    }
-
     public Long getId() {
         return id;
     }
@@ -91,6 +74,16 @@ public class Model {
 
     public void setBrands(Set<Brand> brands) {
         this.brands = brands;
+    }
+
+    public Model(Long id, String model, String generation, String year, String concern) {
+        this.id = id;
+        this.model = model;
+        this.generation = generation;
+        this.year = year;
+        this.concern = concern;
+        //this.engine = engine;
+        //this.brands = brands;
     }
 }
 
